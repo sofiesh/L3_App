@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Financial Calculator</title>
+</head>
+
+<body>
+    <h1>L3 Financial Calculator</h1>
+
+    <div class="sections-container">
+        <section id="savings-section" class="section-box">
+            <button class="toggle-btn">Beräkna sparande per månad</button>
+            <div class="form-container" style="display: none;">
+                <input type="text" id="savings-user" placeholder="Ditt namn">
+                <input type="number" id="savings-goal" placeholder="Sparmål">
+                <input type="number" id="current-savings" placeholder="Nuvarande sparande">
+                <input type="number" id="months-goal" placeholder="Månader till mål">
+                <button id="calculate-savings-btn">Beräkna</button>
+                <div id="savings-result" class="result"></div>
+            </div>
+        </section>
+
+        <section id="budget-section" class="section-box">
+            <button class="toggle-btn">Skapa budget</button>
+            <div class="form-container" style="display: none;">
+                <input type="text" id="budget-user" placeholder="Ditt namn">
+                <input type="number" id="monthly-income" placeholder="Månatlig inkomst">
+                <input type="number" id="monthly-expenses" placeholder="Månatliga utgifter">
+                <button id="create-budget-btn">Skapa budget</button>
+                <div id="budget-result" class="result"></div>
+            </div>
+        </section>
+
+        <section id="rent-buy-section" class="section-box">
+            <button class="toggle-btn">Hyra eller köpa?</button>
+            <div class="form-container" style="display: none;">
+                <input type="number" id="house-price" placeholder="Huspris">
+                <input type="number" id="monthly-rent" placeholder="Månadsvis hyra">
+                <input type="number" id="loan-interest" placeholder="Ränta på lån (%)">
+                <input type="number" id="loan-years" placeholder="Låneår">
+                <button id="calculate-rent-buy-btn">Beräkna</button>
+                <div id="rent-buy-result" class="result"></div>
+            </div>
+        </section>
+
+        <section id="npv-section" class="section-box">
+            <button class="toggle-btn">Nettonuvärde / investeringsranking</button>
+            <div class="form-container" style="display: none;">
+                <textarea id="npv-input" placeholder='Ange investeringar som JSON: [{"name":"Projekt A","cashflows":[1000,2000,3000],"rate":0.05}]'></textarea>
+                <button id="calculate-npv-btn">Beräkna NPV</button>
+                <div id="npv-result" class="result"></div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>

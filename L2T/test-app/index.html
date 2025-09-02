@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <h1>Test App</h1>
+
+  <div class="genericBox">
+    <div class="box">
+      <h2>Generic box for test</h2>
+<!-- TEST by removing the comment below -->
+      <!-- <div>
+        <label for="averages">Averages (comma separated):</label>
+        <input type="text" id="averagesInput" placeholder="Type values here">
+      </div>
+
+      <button id="calculateAverageBtn">Calculate average</button>
+
+      <h2>Result: <span id="averageOutput"></span></h2> -->
+    </div>
+  </div>
+
+  <div class="averageBox">
+    <h2>Average Test</h2>
+
+    <div>
+      <label for="averages">Averages (comma separated):</label>
+      <input type="text" id="averagesInput" placeholder="Type values here">
+    </div>
+
+    <button id="calculateAverageBtn">Calculate average</button>
+
+    <h2>Result: <span id="averageOutput"></span></h2>
+
+  </div>
+
+  <div class="netPresentValueBox">
+    <h2>NPV Calculator Test</h2>
+
+    <div>
+      <label for="cashFlows">Cash Flows (comma separated):</label>
+      <input type="text" id="cashFlows" placeholder="Type cash flow values here">
+    </div>
+
+    <div>
+      <label for="rate">Discount Rate (%):</label>
+      <input type="number" id="rate" placeholder="5">
+    </div>
+
+    <button id="calculateBtn">Calculate NPV</button>
+
+    <h2>Result: <span id="result"></span></h2>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
