@@ -6,106 +6,106 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const form = btn.nextElementSibling;
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
-  });
-});
+  })
+})
 
-// --- Average ---
-const average = new Average();
-const avgInput = document.getElementById('average-input');
-const avgResult = document.getElementById('average-result');
+// // --- Average ---
+// const average = new Average();
+// const avgInput = document.getElementById('average-input');
+// const avgResult = document.getElementById('average-result');
 
-document.getElementById('add-average-btn').addEventListener('click', () => {
-  const val = parseFloat(avgInput.value);
-  if (!isNaN(val)) {
-    average.add(val);
-    avgResult.textContent = `Talet ${val} har lagts till.`;
-    avgInput.value = '';
-  }
-});
+// document.getElementById('add-average-btn').addEventListener('click', () => {
+//   const val = parseFloat(avgInput.value);
+//   if (!isNaN(val)) {
+//     average.add(val);
+//     avgResult.textContent = `Talet ${val} har lagts till.`;
+//     avgInput.value = '';
+//   }
+// });
 
-document.getElementById('calculate-average-btn').addEventListener('click', () => {
-  avgResult.textContent = `Medelvärdet är: ${average.calculate()}`;
-});
+// document.getElementById('calculate-average-btn').addEventListener('click', () => {
+//   avgResult.textContent = `Medelvärdet är: ${average.calculate()}`;
+// });
 
 // --- Savings ---
-const savingsResult = document.getElementById('savings-result');
+const savingsResult = document.getElementById('savings-result')
 document.getElementById('calculate-savings-btn').addEventListener('click', () => {
-  const userName = document.getElementById('savings-user').value;
-  const goal = parseFloat(document.getElementById('savings-goal').value);
-  const current = parseFloat(document.getElementById('current-savings').value);
-  const months = parseInt(document.getElementById('months-goal').value);
+  const userName = document.getElementById('savings-user').value
+  const goal = parseFloat(document.getElementById('savings-goal').value)
+  const current = parseFloat(document.getElementById('current-savings').value)
+  const months = parseInt(document.getElementById('months-goal').value)
 
   try {
-    const plan = calculateSavingsPerMonth(userName, goal, current, months);
-    savingsResult.textContent = `${userName} måste spara ${plan.savingsPerMonth} per månad.`;
-    savingsResult.classList.remove('error');
+    const plan = finCalc.calculateSavingsPerMonth(userName, goal, current, months)
+    savingsResult.textContent = `${userName} måste spara ${plan.savingsPerMonth} per månad.`
+    savingsResult.classList.remove('error')
   } catch (err) {
-    savingsResult.textContent = `Fel: ${err.message}`;
-    savingsResult.classList.add('error');
+    savingsResult.textContent = `Fel: ${err.message}`
+    savingsResult.classList.add('error')
   }
-});
+})
 
 // --- Budget ---
-const budgetResult = document.getElementById('budget-result');
+const budgetResult = document.getElementById('budget-result')
 document.getElementById('create-budget-btn').addEventListener('click', () => {
-  const userName = document.getElementById('budget-user').value;
-  const income = parseFloat(document.getElementById('monthly-income').value);
-  let expenses;
+  const userName = document.getElementById('budget-user').value
+  const income = parseFloat(document.getElementById('monthly-income').value)
+  let expenses
   try {
-    expenses = JSON.parse(document.getElementById('expenses').value);
+    expenses = JSON.parse(document.getElementById('expenses').value)
   } catch {
-    budgetResult.textContent = 'Fel: ogiltig JSON för utgifter';
-    budgetResult.classList.add('error');
-    return;
+    budgetResult.textContent = 'Fel: ogiltig JSON för utgifter'
+    budgetResult.classList.add('error')
+    return
   }
 
   try {
-    const budget = createBudget(userName, income, expenses);
-    budgetResult.textContent = `Balans: ${budget.balance}, Totala utgifter: ${budget.totalMonthlyExpenses}`;
-    budgetResult.classList.remove('error');
+    const budget = createBudget(userName, income, expenses)
+    budgetResult.textContent = `Balans: ${budget.balance}, Totala utgifter: ${budget.totalMonthlyExpenses}`
+    budgetResult.classList.remove('error')
   } catch (err) {
-    budgetResult.textContent = `Fel: ${err.message}`;
-    budgetResult.classList.add('error');
+    budgetResult.textContent = `Fel: ${err.message}`
+    budgetResult.classList.add('error')
   }
-});
+})
 
 // --- Rent or Buy ---
-const rentBuyResult = document.getElementById('rent-buy-result');
+const rentBuyResult = document.getElementById('rent-buy-result')
 document.getElementById('calculate-rent-buy-btn').addEventListener('click', () => {
-  const housePrice = parseFloat(document.getElementById('house-price').value);
-  const rent = parseFloat(document.getElementById('monthly-rent').value);
-  const rate = parseFloat(document.getElementById('loan-interest').value) / 100;
-  const years = parseInt(document.getElementById('loan-years').value);
+  const housePrice = parseFloat(document.getElementById('house-price').value)
+  const rent = parseFloat(document.getElementById('monthly-rent').value)
+  const rate = parseFloat(document.getElementById('loan-interest').value) / 100
+  const years = parseInt(document.getElementById('loan-years').value)
 
   try {
-    const choice = rentOrBuy(housePrice, rent, rate, years);
-    rentBuyResult.textContent = choice;
-    rentBuyResult.classList.remove('error');
+    const choice = rentOrBuy(housePrice, rent, rate, years)
+    rentBuyResult.textContent = choice
+    rentBuyResult.classList.remove('error')
   } catch (err) {
-    rentBuyResult.textContent = `Fel: ${err.message}`;
-    rentBuyResult.classList.add('error');
+    rentBuyResult.textContent = `Fel: ${err.message}`
+    rentBuyResult.classList.add('error')
   }
-});
+})
 
 // --- NPV / Investment Ranking ---
-const npvResult = document.getElementById('npv-result');
+const npvResult = document.getElementById('npv-result')
 document.getElementById('calculate-npv-btn').addEventListener('click', () => {
-  let investments;
+  let investments
   try {
-    investments = JSON.parse(document.getElementById('npv-input').value);
+    investments = JSON.parse(document.getElementById('npv-input').value)
   } catch {
-    npvResult.textContent = 'Fel: ogiltig JSON för investeringar';
-    npvResult.classList.add('error');
-    return;
+    npvResult.textContent = 'Fel: ogiltig JSON för investeringar'
+    npvResult.classList.add('error')
+    return
   }
 
   try {
-    const ranked = rankInvestmentsOnNetPresentValue(investments);
-    npvResult.textContent = 'Rankning: ' + ranked.map(i => `${i.name} (${i.npv})`).join(', ');
-    npvResult.classList.remove('error');
+    const ranked = rankInvestmentsOnNetPresentValue(investments)
+    npvResult.textContent = 'Rankning: ' + ranked.map(i => `${i.name} (${i.npv})`).join(', ')
+    npvResult.classList.remove('error')
   } catch (err) {
-    npvResult.textContent = `Fel: ${err.message}`;
-    npvResult.classList.add('error');
+    npvResult.textContent = `Fel: ${err.message}`
+    npvResult.classList.add('error')
   }
-});
+})
 
