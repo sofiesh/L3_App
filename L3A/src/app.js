@@ -9,24 +9,6 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
   })
 })
 
-// // --- Average ---
-// const average = new Average();
-// const avgInput = document.getElementById('average-input');
-// const avgResult = document.getElementById('average-result');
-
-// document.getElementById('add-average-btn').addEventListener('click', () => {
-//   const val = parseFloat(avgInput.value);
-//   if (!isNaN(val)) {
-//     average.add(val);
-//     avgResult.textContent = `Talet ${val} har lagts till.`;
-//     avgInput.value = '';
-//   }
-// });
-
-// document.getElementById('calculate-average-btn').addEventListener('click', () => {
-//   avgResult.textContent = `Medelvärdet är: ${average.calculate()}`;
-// });
-
 // --- Savings ---
 const savingsResult = document.getElementById('savings-result')
 document.getElementById('calculate-savings-btn').addEventListener('click', () => {
