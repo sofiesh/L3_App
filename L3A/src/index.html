@@ -48,9 +48,10 @@
         </section>
 
         <section id="npv-section" class="section-box">
-            <button class="toggle-btn">Nettonuvärde / investeringsranking</button>
+            <button class="toggle-btn">NPV / Investeringar</button>
             <div class="form-container" style="display: none;">
-                <textarea id="npv-input" placeholder='Ange investeringar som JSON: [{"name":"Projekt A","cashflows":[1000,2000,3000],"rate":0.05}]'></textarea>
+                <div id="investment-list"></div>
+                <button id="add-investment-btn">Lägg till investering</button>
                 <button id="calculate-npv-btn">Beräkna NPV</button>
                 <div id="npv-result" class="result"></div>
             </div>

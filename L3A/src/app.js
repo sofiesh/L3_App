@@ -80,20 +80,68 @@ document.getElementById('calculate-rent-buy-btn').addEventListener('click', () =
 })
 
 // --- NPV / Investment Ranking ---
+const investmentList = document.getElementById('investment-list')
 const npvResult = document.getElementById('npv-result')
+// Function to add a new investment to be assessed.
+function addInvestmentRow() {
+    const container = document.createElement('div')
+    container.classList.add('investment-row')
+
+    container.innerHTML = `
+    <input type="text" class="investment-name" placeholder="Namn t.ex. Project A">
+    <input type="number" class="discount-rate" placeholder="Ränta (%)">
+    <div class="cashflows-container">
+        <input type="number" class="cashflow" placeholder="År 0 (t.ex. -1000)">
+        <input type="number" class="cashflow" placeholder="År 1 (t.ex. 200)">
+    </div>
+    <button type="button" class="add-cashflow-btn">Lägg till cashflow</button>
+    `
+
+    // Button to add cashflows
+    const cashflowBtn = container.querySelector('.add-cashflow-btn')
+    cashflowBtn.addEventListener('click', () => {
+        const cashflowsContainer = container.querySelector('.cashflows-container')
+        const newInput = document.createElement('input')
+        newInput.type = 'number'
+        newInput.classList.add('cashflow')
+        newInput.placeholder = `År ${cashflowsContainer.querySelectorAll('.cashflow').length}`
+        cashflowsContainer.appendChild(newInput)
+    })
+
+    investmentList.appendChild(container)
+}
+
+// Button to add more investments
+document.getElementById('add-investment-btn').addEventListener('click', addInvestmentRow)
+
+// Adding the first investment row
+addInvestmentRow()
+
+// Calculate NPV
 document.getElementById('calculate-npv-btn').addEventListener('click', () => {
-    let investments
-    try {
-        investments = JSON.parse(document.getElementById('npv-input').value)
-    } catch {
-        npvResult.textContent = 'Fel: ogiltig inmatning av investeringar'
-        npvResult.classList.add('error')
-        return
-    }
+    let investments = []
+
+    document.querySelectorAll('.investment-row').forEach(row => {
+        const name = row.querySelector('.investment-name').value
+        const rate = parseFloat(row.querySelector('.discount-rate').value) / 100
+        const cashFlows = [...row.querySelectorAll('.cashflow')]
+            .map(input => parseFloat(input.value))
+            .filter(v => !isNaN(v))
+
+        if (name && !isNaN(rate) && cashFlows.length > 0) {
+            investments.push({ name, rate, cashFlows })
+        }
+
+    })
 
     try {
-        const ranked = rankInvestmentsOnNetPresentValue(investments)
-        npvResult.textContent = 'Rankning: ' + ranked.map(i => `${i.name} (${i.npv})`).join(', ')
+        const ranked = finCalc.rankInvestmentsOnNetPresentValue(investments)
+        npvResult.innerHTML = `
+      <h4>Rankning av investeringar</h4>
+      <ol>
+        ${ranked.map(i => `<li>${i.name}: NPV = ${i.npv.toFixed(2)}</li>`).join('')}
+      </ol>
+    `
         npvResult.classList.remove('error')
     } catch (err) {
         npvResult.textContent = `Fel: ${err.message}`
