@@ -29,7 +29,7 @@ See the `docs/` folder for documentation targeted to:
 
 
 ## Repository Structure
-L3_App/
+L3_App/<br>
 ├─ docs/
 │ ├─ USERS.md
 │ ├─ DEVELOPERS.md
