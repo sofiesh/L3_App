@@ -32,6 +32,7 @@ See the `docs/` folder for documentation targeted to:
 ```
 L3_App/
 ├─ docs/
+│  └─ img/
 │  ├─ USERS.md
 │  ├─ DEVELOPERS.md
 │  ├─ MODULE-USERS.md
