@@ -32,26 +32,27 @@ See the `docs/` folder for documentation targeted to:
 ```
 L3_App/
 ├─ docs/
-│ ├─ USERS.md
-│ ├─ DEVELOPERS.md
-│ ├─ MODULE-USERS.md
-│ ├─ MODULE-DEVS.md
-│ └─ EXAMINER.md
+│  ├─ USERS.md
+│  ├─ DEVELOPERS.md
+│  ├─ MODULE-USERS.md
+│  ├─ MODULE-DEVS.md
+│  └─ EXAMINER.md
 ├─ L2M/
-│ └─ finCalc_src/
-│ ├─ createBudget.js
-│ ├─ calculateSavings.js
-│ └─ netPresentValue.js
+│  └─ finCalc_src/
+│  │  ├─ createBudget.js
+│  │  ├─ calculateSavings.js
+│  │  └─ netPresentValue.js
+|  └─ README.md
 ├─ L2T/ 
-│ └─ finCalc_src/
-│ ├─ createBudget.js
-│ ├─ calculateSavings.js
-│ └─ netPresentValue.js
+│  └─ finCalc_src/
+│     ├─ createBudget.js
+│     ├─ calculateSavings.js
+│     └─ netPresentValue.js
 ├─ L3A/
-│ ├─ src/
-│ │ ├─ index.html
-│ │ ├─ style.css
-│ │ └─ app.js
+│  ├─ src/
+│  │  ├─ index.html
+│  │  ├─ style.css
+│  │  └─ app.js
 ├─ node_modules/
 ├─ package-lock.json
 ├─ package.json
