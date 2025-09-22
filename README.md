@@ -30,7 +30,7 @@ See the `docs/` folder for documentation targeted to:
 
 ## Repository Structure
 L3_App/<br>
-├─ docs/
+├─ docs/<br>
 │ ├─ USERS.md
 │ ├─ DEVELOPERS.md
 │ ├─ MODULE-USERS.md
