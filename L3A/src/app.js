@@ -22,7 +22,7 @@ document.getElementById('calculate-savings-btn').addEventListener('click', () =>
         savingsResult.textContent = `${userName} måste spara ${plan.savingsPerMonth} per månad.`
         savingsResult.classList.remove('error')
     } catch (err) {
-        savingsResult.textContent = `Fel: ${err.message}`
+        savingsResult.textContent = `Error: ${err.message}`
         savingsResult.classList.add('error')
     }
 })
@@ -35,7 +35,7 @@ document.getElementById('create-budget-btn').addEventListener('click', () => {
     const monthlyExpensesInput = parseFloat(document.getElementById('monthly-expenses').value)
 
     if (isNaN(income) || isNaN(monthlyExpensesInput)) {
-        budgetResult.textContent = 'Fel: Inkomst och utgifter måste vara giltiga nummer.'
+        budgetResult.textContent = 'Error: Income and expenses must be valid numbers.'
         budgetResult.classList.add('error')
         return
     }
@@ -66,15 +66,11 @@ document.getElementById('calculate-rent-buy-btn').addEventListener('click', () =
     try {
         const result = finCalc.rentOrBuy(housePrice, rent, months)
         rentBuyResult.innerHTML = `
-        Totalkostnad att köpa: ${formatRentBuyResults(result.totalCostToBuy)}<br>
-        Totalkostnad att hyra: ${formatRentBuyResults(result.totalCostToRent)}<br>
-        Månadskostnad att köpa: ${formatRentBuyResults(result.monthlyBuyCost)}<br>
-        Månadskostnad att hyra: ${formatRentBuyResults(result.monthlyRentCost)}<br>
         Det blir billigare att köpa efter ${Math.ceil(result.monthsToBreakEven)} månader.
         `
         rentBuyResult.classList.remove('error')
     } catch (err) {
-        rentBuyResult.textContent = `Fel: ${err.message}`
+        rentBuyResult.textContent = `Error: ${err.message}`
         rentBuyResult.classList.add('error')
     }
 })
@@ -125,8 +121,10 @@ document.getElementById('calculate-npv-btn').addEventListener('click', () => {
         const name = row.querySelector('.investment-name').value
         const rate = parseFloat(row.querySelector('.discount-rate').value) / 100
         const cashFlows = [...row.querySelectorAll('.cashflow')]
-            .map(input => parseFloat(input.value))
-            .filter(v => !isNaN(v))
+            .map(input => {
+                const val = parseFloat(input.value)
+                return isNaN(val) ? input.value : val
+            })
 
         if (name && !isNaN(rate) && cashFlows.length > 0) {
             investments.push({ name, rate, cashFlows })
@@ -144,7 +142,7 @@ document.getElementById('calculate-npv-btn').addEventListener('click', () => {
     `
         npvResult.classList.remove('error')
     } catch (err) {
-        npvResult.textContent = `Fel: ${err.message}`
+        npvResult.textContent = `Error: ${err.message}`
         npvResult.classList.add('error')
     }
 })
