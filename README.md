@@ -29,8 +29,8 @@ See the `docs/` folder for documentation targeted to:
 
 
 ## Repository Structure
-L3_App/<br>
-├─ docs/<br>
+```L3_App/
+├─ docs/
 │ ├─ USERS.md
 │ ├─ DEVELOPERS.md
 │ ├─ MODULE-USERS.md
@@ -54,5 +54,4 @@ L3_App/<br>
 ├─ node_modules/
 ├─ package-lock.json
 ├─ package.json
-└─ README.md
-
+└─ README.md```
